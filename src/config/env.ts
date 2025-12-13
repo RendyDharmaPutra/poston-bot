@@ -10,4 +10,5 @@ const getEnv = (key: string) => {
 
 export const env = {
   BOT_TOKEN: getEnv("BOT_TOKEN"),
+  API_BASE_URL: getEnv("API_BASE_URL"),
 };
