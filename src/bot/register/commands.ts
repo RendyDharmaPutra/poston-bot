@@ -1,5 +1,5 @@
 import { Bot } from "grammy";
-import { savePostHandler } from "./post.handler";
+import { savePostHandler } from "../handlers/post.handler";
 
 export const registerCommands = (bot: Bot) => {
   bot.command("start", (ctx) => {
