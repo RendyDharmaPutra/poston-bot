@@ -9,6 +9,7 @@ const getEnv = (key: string) => {
 };
 
 export const env = {
+  NODE_ENV: process.env.NODE_ENV || "development",
   BOT_TOKEN: getEnv("BOT_TOKEN"),
   API_BASE_URL: getEnv("API_BASE_URL"),
 };
