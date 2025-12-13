@@ -11,6 +11,8 @@ export const registerGlobalErrorHandler = (bot: Bot) => {
     if (error instanceof AppError) {
       logger.error(`Expected Error: ${error}`);
       await ctx.reply(`❌ ${error.name}\n${error.message}`);
+
+      return;
     }
 
     //   Unexpected error
