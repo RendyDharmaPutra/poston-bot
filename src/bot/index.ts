@@ -1,5 +1,5 @@
 import { Bot } from "grammy";
-import { env } from "../libs/config/env";
+import { env } from "../config/env";
 import { registerCommands } from "./handlers/commands-handler";
 
 const bot = new Bot(env.BOT_TOKEN);
