@@ -13,7 +13,7 @@ export const savePostHandler = async (ctx: Context) => {
 
   const msg = await ctx.reply("Sedang menyimpan postingan...");
 
-  await savePostService(ctx, text.toString());
+  await savePostService(ctx.from?.id, text.toString());
 
   await ctx.api.editMessageText(
     msg.chat.id,
