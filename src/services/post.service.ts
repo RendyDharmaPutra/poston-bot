@@ -1,9 +1,14 @@
+import { savePostRepo } from "../repositories/post.repo";
+import { AppError } from "../utils/errors";
+
 export const savePostService = async (
   telegramId: number | undefined,
   url: string
 ) => {
-  console.log(`Saving post: ${url} for user: ${telegramId}`);
+  if (!telegramId)
+    throw new AppError("Gagal menyimpan postingan", "Telegram id tidak valid");
 
-  // Simulate processing delay
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  const result = await savePostRepo(url, telegramId);
+
+  console.log(result.data);
 };
