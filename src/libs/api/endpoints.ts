@@ -9,4 +9,8 @@ import { apiClient } from "./client";
  * // Get the relative URL path for the "posts" endpoint
  * const postsEndpoint = endpoints.posts; // "/api/posts"
  */
-export const endpoints = {};
+export const endpoints = {
+  posts: {
+    root: "/posts",
+  },
+};

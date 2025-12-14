@@ -46,3 +46,11 @@ apiClient.interceptors.response.use(
     throw error;
   }
 );
+
+export const authHeaders = (telegramId: number) => {
+  return {
+    "X-Telegram-Id": telegramId,
+    "X-Bot-Secret": env.BOT_SECRET,
+    "Content-Type": "application/json",
+  };
+};
