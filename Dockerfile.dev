@@ -1,0 +1,19 @@
+FROM node:22-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package.json package-lock.json* ./
+
+# Install dependencies (include devDeps)
+RUN npm install
+
+# Copy source code
+COPY . .
+
+# Expose nothing (bot pakai outbound connection)
+# EXPOSE 3000
+
+# Default command (hot reload)
+CMD ["npm", "run", "dev"]
