@@ -20,7 +20,18 @@ export type ValidationFailedApiResponse = FailedApiResponse & {
   details: Record<string, string[]>;
 };
 
+export type RetrieveApiResponse<T> =
+  | (SuccessApiResponseWithData<T> & { meta: MetaApiResponse })
+  | FailedApiResponse;
+
 export type MutationApiResponse =
   | SuccessApiResponse
   | FailedApiResponse
   | ValidationFailedApiResponse;
+
+export type MetaApiResponse = {
+  page: number;
+  limit: number;
+  total: number;
+  lastPage: number;
+};
