@@ -3,7 +3,28 @@ import { endpoints } from "../libs/api/endpoints";
 import { authHeaders } from "../libs/api/client";
 import { AxiosResponse } from "axios";
 import { logger } from "../libs/logger";
-import { MutationApiResponse } from "../types/api/api-response.type";
+import {
+  MutationApiResponse,
+  RetrieveApiResponse,
+} from "../types/api/api-response.type";
+import { PostType } from "../types/post.type";
+
+export const listPostRepo = async (
+  telegramId: number
+): Promise<AxiosResponse<RetrieveApiResponse<PostType[]>>> => {
+  try {
+    return await apiClient.get<RetrieveApiResponse<PostType[]>>(
+      endpoints.posts.root,
+      {
+        headers: authHeaders(telegramId),
+      }
+    );
+  } catch (error) {
+    logger.error(error);
+
+    throw new Error(String(error));
+  }
+};
 
 export const savePostRepo = async (
   url: string,
