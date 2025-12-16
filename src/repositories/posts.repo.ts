@@ -9,7 +9,7 @@ import {
 } from "../types/api/api-response.type";
 import { PostType } from "../types/post.type";
 
-export const listPostRepo = async (
+export const listPostsRepo = async (
   telegramId: number
 ): Promise<AxiosResponse<RetrieveApiResponse<PostType[]>>> => {
   try {

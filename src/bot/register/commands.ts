@@ -1,12 +1,12 @@
 import { Bot } from "grammy";
-import { listPostHandler, savePostHandler } from "../handlers/post.handler";
+import { listPostsHandler, savePostHandler } from "../handlers/posts.handler";
 
 export const registerCommands = (bot: Bot) => {
   bot.command("start", (ctx) => {
     ctx.reply("Hello!");
   });
 
-  bot.command("list", listPostHandler);
+  bot.command("list", listPostsHandler);
   bot.command("save", savePostHandler);
 
   bot.command("help", async (ctx) => {

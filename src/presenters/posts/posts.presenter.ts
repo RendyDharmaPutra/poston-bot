@@ -3,7 +3,7 @@ import { MetaApiResponse } from "../../types/api/api-response.type";
 import { postItemPresenter } from "./post-item.presenter";
 import { emptyPostPresenter } from "./empty-post.presenter";
 
-export function listPostPresenter(
+export function listPostsPresenter(
   posts: PostType[],
   meta: MetaApiResponse
 ): string {
