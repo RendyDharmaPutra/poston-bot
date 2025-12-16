@@ -9,7 +9,7 @@ import { env } from "../../config/env";
  */
 export const apiClient = axios.create({
   baseURL: env.API_BASE_URL,
-  timeout: 10000,
+  timeout: 30000,
   headers: {
     "Content-Type": "application/json",
   },
@@ -46,3 +46,11 @@ apiClient.interceptors.response.use(
     throw error;
   }
 );
+
+export const authHeaders = (telegramId: number) => {
+  return {
+    "X-Telegram-Id": telegramId,
+    "X-Bot-Secret": env.BOT_SECRET,
+    "Content-Type": "application/json",
+  };
+};

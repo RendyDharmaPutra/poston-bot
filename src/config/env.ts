@@ -11,5 +11,6 @@ const getEnv = (key: string) => {
 export const env = {
   NODE_ENV: process.env.NODE_ENV || "development",
   BOT_TOKEN: getEnv("BOT_TOKEN"),
+  BOT_SECRET: getEnv("BOT_SECRET"),
   API_BASE_URL: getEnv("API_BASE_URL"),
 };
