@@ -20,6 +20,10 @@ export type ValidationFailedApiResponse = FailedApiResponse & {
   details: Record<string, string[]>;
 };
 
+export type RetrieveApiResponse<T> =
+  | SuccessApiResponseWithData<T>
+  | FailedApiResponse;
+
 export type MutationApiResponse =
   | SuccessApiResponse
   | FailedApiResponse
