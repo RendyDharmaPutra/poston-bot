@@ -5,11 +5,11 @@ import {
   savePostService,
 } from "../../services/posts.service";
 import { listPostsPresenter } from "../../presenters/posts/posts.presenter";
+import { buildPagination } from "../../presenters/pagination.presenter";
 
 export const savePostHandler = async (ctx: Context) => {
   // Fetch the command argument if present, otherwise use the text directly.
   const text = ctx.match ?? ctx.message?.text;
-
   if (!text || !isValidUrl(text.toString()))
     return ctx.reply(
       "Silahkan kirimkan url postingan yang valid untuk disimpan.\nContoh: https://www.instagram.com/p/xxxxx/"
@@ -27,9 +27,13 @@ export const listPostsHandler = async (ctx: Context) => {
 
   const result = await listPostsService(ctx.from?.id);
 
+  const pages = buildPagination(result.meta.page, result.meta.lastPage);
   const message = listPostsPresenter(result.data, result.meta);
 
   await ctx.api.editMessageText(msg.chat.id, msg.message_id, message, {
     parse_mode: "HTML",
+    reply_markup: {
+      ...pages,
+    },
   });
 };
