@@ -14,7 +14,7 @@ export const buildPageButtons = (
     const page = start + i;
     return {
       text: page === current ? `• ${page} •` : page.toString(),
-      callback_data: `page:${page}`,
+      callback_data: page !== current ? `page:${page}` : "noop",
     };
   });
 };
