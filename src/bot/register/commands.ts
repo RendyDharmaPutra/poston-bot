@@ -6,7 +6,7 @@ export const registerCommands = (bot: Bot) => {
     ctx.reply("Hello!");
   });
 
-  bot.command("list", listPostsHandler);
+  bot.command("list", (ctx) => listPostsHandler(ctx));
   bot.command("save", savePostHandler);
 
   bot.command("help", async (ctx) => {
@@ -24,7 +24,7 @@ export const registerCommands = (bot: Bot) => {
     const [domain, value] = data?.split(":") ?? [];
 
     if (domain === "page") {
-      listPostsHandler(ctx);
+      listPostsHandler(ctx, Number(value));
     }
   });
 };

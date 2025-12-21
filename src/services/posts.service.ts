@@ -2,11 +2,14 @@ import { isFailed, isValidationFailed } from "../types/api/api-response.guard";
 import { listPostsRepo, savePostRepo } from "../repositories/posts.repo";
 import { AppError } from "../utils/errors";
 
-export const listPostsService = async (telegramId: number | undefined) => {
+export const listPostsService = async (
+  telegramId: number | undefined,
+  page: number
+) => {
   if (!telegramId)
     throw new AppError("Gagal memuat postingan", "Telegram id tidak valid");
 
-  const response = await listPostsRepo(telegramId);
+  const response = await listPostsRepo(telegramId, page);
   const result = response.data;
 
   if (isFailed(result)) {

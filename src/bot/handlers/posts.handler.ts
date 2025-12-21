@@ -22,10 +22,10 @@ export const savePostHandler = async (ctx: Context) => {
   await ctx.api.editMessageText(msg.chat.id, msg.message_id, result.message);
 };
 
-export const listPostsHandler = async (ctx: Context) => {
+export const listPostsHandler = async (ctx: Context, page = 1) => {
   const msg = await ctx.reply("Sedang memuat postingan...");
 
-  const result = await listPostsService(ctx.from?.id);
+  const result = await listPostsService(ctx.from?.id, page);
 
   const pages = buildPagination(result.meta.page, result.meta.lastPage);
   const message = listPostsPresenter(result.data, result.meta);
