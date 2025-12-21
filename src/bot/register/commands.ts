@@ -16,4 +16,15 @@ export const registerCommands = (bot: Bot) => {
   });
 
   bot.on("message", savePostHandler);
+
+  bot.on("callback_query", async (ctx) => {
+    const data = ctx.callbackQuery.data;
+    await ctx.answerCallbackQuery();
+
+    const [domain, value] = data?.split(":") ?? [];
+
+    if (domain === "page") {
+      listPostsHandler(ctx);
+    }
+  });
 };
