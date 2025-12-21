@@ -10,11 +10,12 @@ import {
 import { PostType } from "../types/post.type";
 
 export const listPostsRepo = async (
-  telegramId: number
+  telegramId: number,
+  page: number
 ): Promise<AxiosResponse<RetrieveApiResponse<PostType[]>>> => {
   try {
     return await apiClient.get<RetrieveApiResponse<PostType[]>>(
-      endpoints.posts.root,
+      `${endpoints.posts.root}?page=${page}`,
       {
         headers: authHeaders(telegramId),
       }

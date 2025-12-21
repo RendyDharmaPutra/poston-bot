@@ -6,7 +6,7 @@ export const registerCommands = (bot: Bot) => {
     ctx.reply("Hello!");
   });
 
-  bot.command("list", listPostsHandler);
+  bot.command("list", (ctx) => listPostsHandler(ctx));
   bot.command("save", savePostHandler);
 
   bot.command("help", async (ctx) => {
@@ -16,4 +16,15 @@ export const registerCommands = (bot: Bot) => {
   });
 
   bot.on("message", savePostHandler);
+
+  bot.on("callback_query", async (ctx) => {
+    const data = ctx.callbackQuery.data;
+    await ctx.answerCallbackQuery();
+
+    const [domain, value] = data?.split(":") ?? [];
+
+    if (domain === "page") {
+      listPostsHandler(ctx, Number(value));
+    }
+  });
 };
