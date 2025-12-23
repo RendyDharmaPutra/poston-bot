@@ -5,7 +5,7 @@ import {
   savePostService,
 } from "../../services/posts.service";
 import { listPostsPresenter } from "../../presenters/posts/posts.presenter";
-import { buildPagination } from "../../presenters/pagination.presenter";
+import { Message } from "grammy/types";
 
 export const savePostHandler = async (ctx: Context) => {
   // Fetch the command argument if present, otherwise use the text directly.
@@ -22,18 +22,31 @@ export const savePostHandler = async (ctx: Context) => {
   await ctx.api.editMessageText(msg.chat.id, msg.message_id, result.message);
 };
 
-export const listPostsHandler = async (ctx: Context, page = 1) => {
-  const msg = await ctx.reply("Sedang memuat postingan...");
+export const listPostsHandler = async (
+  ctx: Context,
+  page = 1,
+  isEdit = false
+) => {
+  const msg = !isEdit ? await ctx.reply("Sedang memuat postingan...") : null;
 
   const result = await listPostsService(ctx.from?.id, page);
+  const { message, pages } = listPostsPresenter(result.data, result.meta);
 
-  const pages = buildPagination(result.meta.page, result.meta.lastPage);
-  const message = listPostsPresenter(result.data, result.meta);
-
-  await ctx.api.editMessageText(msg.chat.id, msg.message_id, message, {
-    parse_mode: "HTML",
+  const options = {
+    parse_mode: "HTML" as const,
     reply_markup: {
       ...pages,
     },
-  });
+  };
+
+  if (isEdit) {
+    await ctx.editMessageText(message, options);
+  } else {
+    await ctx.api.editMessageText(
+      msg!.chat.id,
+      msg!.message_id,
+      message,
+      options
+    );
+  }
 };

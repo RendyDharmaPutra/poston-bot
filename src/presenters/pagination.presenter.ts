@@ -25,16 +25,22 @@ export const buildPagination = (current: number, total: number) => {
   return {
     inline_keyboard: [
       pages,
-      [
-        {
-          text: "◀ Sebelumnya",
-          callback_data: current > 1 ? `page:${current - 1}` : "noop",
-        },
-        {
-          text: "Selanjutnya ▶",
-          callback_data: current < total ? `page:${current + 1}` : "noop",
-        },
-      ],
+      current > 1
+        ? [
+            {
+              text: "◀ Sebelumnya",
+              callback_data: `page:${current - 1}`,
+            },
+          ]
+        : [],
+      current < total
+        ? [
+            {
+              text: "Selanjutnya ▶",
+              callback_data: `page:${current + 1}`,
+            },
+          ]
+        : [],
     ],
   };
 };
