@@ -5,6 +5,7 @@ import {
   savePostService,
 } from "../../services/posts.service";
 import { listPostsPresenter } from "../../presenters/posts/posts.presenter";
+import { Message } from "grammy/types";
 
 export const savePostHandler = async (ctx: Context) => {
   // Fetch the command argument if present, otherwise use the text directly.
@@ -21,17 +22,31 @@ export const savePostHandler = async (ctx: Context) => {
   await ctx.api.editMessageText(msg.chat.id, msg.message_id, result.message);
 };
 
-export const listPostsHandler = async (ctx: Context, page = 1) => {
-  const msg = await ctx.reply("Sedang memuat postingan...");
+export const listPostsHandler = async (
+  ctx: Context,
+  page = 1,
+  fromCommand = false
+) => {
+  let msg: Message.TextMessage | undefined;
+
+  if (!fromCommand) msg = await ctx.reply("Sedang memuat postingan...");
 
   const result = await listPostsService(ctx.from?.id, page);
-
   const { message, pages } = listPostsPresenter(result.data, result.meta);
 
-  await ctx.api.editMessageText(msg.chat.id, msg.message_id, message, {
-    parse_mode: "HTML",
-    reply_markup: {
-      ...pages,
-    },
-  });
+  if (!fromCommand) {
+    await ctx.api.editMessageText(msg!.chat.id, msg!.message_id, message, {
+      parse_mode: "HTML",
+      reply_markup: {
+        ...pages,
+      },
+    });
+  } else {
+    await ctx.editMessageText(message, {
+      parse_mode: "HTML",
+      reply_markup: {
+        ...pages,
+      },
+    });
+  }
 };
