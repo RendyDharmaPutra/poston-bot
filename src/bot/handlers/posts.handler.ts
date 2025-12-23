@@ -5,7 +5,6 @@ import {
   savePostService,
 } from "../../services/posts.service";
 import { listPostsPresenter } from "../../presenters/posts/posts.presenter";
-import { buildPagination } from "../../presenters/pagination.presenter";
 
 export const savePostHandler = async (ctx: Context) => {
   // Fetch the command argument if present, otherwise use the text directly.
@@ -27,8 +26,7 @@ export const listPostsHandler = async (ctx: Context, page = 1) => {
 
   const result = await listPostsService(ctx.from?.id, page);
 
-  const pages = buildPagination(result.meta.page, result.meta.lastPage);
-  const message = listPostsPresenter(result.data, result.meta);
+  const { message, pages } = listPostsPresenter(result.data, result.meta);
 
   await ctx.api.editMessageText(msg.chat.id, msg.message_id, message, {
     parse_mode: "HTML",
