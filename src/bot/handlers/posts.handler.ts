@@ -25,28 +25,28 @@ export const savePostHandler = async (ctx: Context) => {
 export const listPostsHandler = async (
   ctx: Context,
   page = 1,
-  fromCommand = false
+  isEdit = false
 ) => {
-  let msg: Message.TextMessage | undefined;
-
-  if (!fromCommand) msg = await ctx.reply("Sedang memuat postingan...");
+  const msg = !isEdit ? await ctx.reply("Sedang memuat postingan...") : null;
 
   const result = await listPostsService(ctx.from?.id, page);
   const { message, pages } = listPostsPresenter(result.data, result.meta);
 
-  if (!fromCommand) {
-    await ctx.api.editMessageText(msg!.chat.id, msg!.message_id, message, {
-      parse_mode: "HTML",
-      reply_markup: {
-        ...pages,
-      },
-    });
+  const options = {
+    parse_mode: "HTML" as const,
+    reply_markup: {
+      ...pages,
+    },
+  };
+
+  if (isEdit) {
+    await ctx.editMessageText(message, options);
   } else {
-    await ctx.editMessageText(message, {
-      parse_mode: "HTML",
-      reply_markup: {
-        ...pages,
-      },
-    });
+    await ctx.api.editMessageText(
+      msg!.chat.id,
+      msg!.message_id,
+      message,
+      options
+    );
   }
 };
