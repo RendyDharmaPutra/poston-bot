@@ -11,6 +11,7 @@ export const startHandler = async (ctx: Context) => {
       `• Gunakan <b>/${COMMANDS.list.command}</b> untuk melihat daftar postingan tersimpan\n\n` +
       `📌 <b>Command tersedia:</b>\n` +
       `/${COMMANDS.list.command} — ${COMMANDS.list.description}\n` +
+      `/${COMMANDS.save.command} — ${COMMANDS.save.description}\n` +
       `/${COMMANDS.help.command} — ${COMMANDS.help.description}\n\n` +
       `/${COMMANDS.about.command} — ${COMMANDS.about.description}\n\n` +
       `Mulai sekarang, kirim tautan postingan yang ingin kamu simpan 👇`,
@@ -31,6 +32,7 @@ export const helpHandler = async (ctx: Context) => {
       `• Gunakan tombol ◀ ▶ untuk berpindah halaman\n\n` +
       `📖 <b>Command tersedia:</b>\n` +
       `/${COMMANDS.list.command} — ${COMMANDS.list.description}\n` +
+      `/${COMMANDS.save.command} — ${COMMANDS.save.description}\n` +
       `/${COMMANDS.help.command} — ${COMMANDS.help.description}\n\n` +
       `/${COMMANDS.about.command} — ${COMMANDS.about.description}\n\n` +
       `Jika mengalami kendala, pastikan tautan yang dikirim valid ` +
