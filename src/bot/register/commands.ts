@@ -1,18 +1,18 @@
 import { Bot } from "grammy";
 import { listPostsHandler, savePostHandler } from "../handlers/posts.handler";
 import { startHandler } from "../handlers/common.handler";
+import { COMMANDS } from "../../constants/commands";
 
 export const registerCommands = (bot: Bot) => {
-  bot.command("start", startHandler);
-
-  bot.command("list", (ctx) => listPostsHandler(ctx));
-  bot.command("save", savePostHandler);
-
-  bot.command("help", async (ctx) => {
+  bot.command(COMMANDS.start, startHandler);
+  bot.command(COMMANDS.help, async (ctx) => {
     await ctx.reply(
       "Kirim URL untuk disimpan.\nGunakan /list untuk melihat daftar post."
     );
   });
+
+  bot.command(COMMANDS.list, (ctx) => listPostsHandler(ctx));
+  bot.command(COMMANDS.save, savePostHandler);
 
   bot.on("message", savePostHandler);
 
