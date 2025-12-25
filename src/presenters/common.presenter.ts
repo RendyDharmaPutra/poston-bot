@@ -20,6 +20,6 @@ export const aboutPresenter = () => {
 
 export const aboutKeyboard = () => {
   return new InlineKeyboard()
-    .url("🌐 Portofolio", "https://your-portfolio-url.com")
-    .url("☕ Donasi", "https://saweria.co/yourname");
+    .url("🌐 Portofolio", "https://archilst.my.id")
+    .url("☕ Donasi", "https://saweria.co/rendydharmaputra");
 };
