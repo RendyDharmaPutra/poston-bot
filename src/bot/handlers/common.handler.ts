@@ -1,5 +1,9 @@
 import { Context } from "grammy";
 import { COMMANDS } from "../../constants/commands";
+import {
+  aboutPresenter,
+  aboutKeyboard,
+} from "../../presenters/common.presenter";
 
 export const startHandler = async (ctx: Context) => {
   ctx.reply(
@@ -41,4 +45,11 @@ export const helpHandler = async (ctx: Context) => {
       parse_mode: "HTML",
     }
   );
+};
+
+export const aboutHandler = async (ctx: Context) => {
+  ctx.reply(aboutPresenter(), {
+    parse_mode: "HTML",
+    reply_markup: aboutKeyboard(),
+  });
 };
