@@ -8,11 +8,11 @@ export const startHandler = async (ctx: Context) => {
       `dari berbagai platform dalam satu tempat.\n\n` +
       `✨ <b>Cara cepat:</b>\n` +
       `• Kirim <b>tautan postingan</b> → otomatis tersimpan\n` +
-      `• Gunakan <b>/${COMMANDS.list}</b> untuk melihat daftar postingan tersimpan\n\n` +
+      `• Gunakan <b>/${COMMANDS.list.command}</b> untuk melihat daftar postingan tersimpan\n\n` +
       `📌 <b>Command tersedia:</b>\n` +
-      `/${COMMANDS.list} — lihat daftar postingan tersimpan\n` +
-      `/${COMMANDS.help} — tampilkan panduan penggunaan bot\n\n` +
-      `/${COMMANDS.about} — tampilkan informasi mengenai Poston dan developer\n\n` +
+      `/${COMMANDS.list.command} — ${COMMANDS.list.description}\n` +
+      `/${COMMANDS.help.command} — ${COMMANDS.help.description}\n\n` +
+      `/${COMMANDS.about.command} — ${COMMANDS.about.description}\n\n` +
       `Mulai sekarang, kirim tautan postingan yang ingin kamu simpan 👇`,
     {
       parse_mode: "HTML",
@@ -27,12 +27,12 @@ export const helpHandler = async (ctx: Context) => {
       `dari berbagai platform dalam satu tempat.\n\n` +
       `📌 <b>Cara menggunakan:</b>\n` +
       `• Kirim <b>tautan postingan</b> ke bot → otomatis tersimpan\n` +
-      `• Gunakan <b>/${COMMANDS.list}</b> untuk melihat daftar postingan tersimpan\n` +
+      `• Gunakan <b>/${COMMANDS.list.command}</b> untuk melihat daftar postingan tersimpan\n` +
       `• Gunakan tombol ◀ ▶ untuk berpindah halaman\n\n` +
       `📖 <b>Command tersedia:</b>\n` +
-      `/${COMMANDS.list} — lihat daftar postingan tersimpan\n` +
-      `/${COMMANDS.help} — tampilkan panduan penggunaan bot\n\n` +
-      `/${COMMANDS.about} — tampilkan informasi mengenai Poston dan developer\n\n` +
+      `/${COMMANDS.list.command} — ${COMMANDS.list.description}\n` +
+      `/${COMMANDS.help.command} — ${COMMANDS.help.description}\n\n` +
+      `/${COMMANDS.about.command} — ${COMMANDS.about.description}\n\n` +
       `Jika mengalami kendala, pastikan tautan yang dikirim valid ` +
       `dan coba lagi beberapa saat kemudian.`,
     {

@@ -1,9 +1,10 @@
 export const COMMANDS = {
-  start: "start",
-  list: "list",
-  save: "save",
-  help: "help",
-  about: "about",
-};
-export type CommandKey = keyof typeof COMMANDS;
-export type CommandValue = (typeof COMMANDS)[CommandKey];
+  start: { command: "start", description: "Informasi awal bot" },
+  list: { command: "list", description: "Lihat daftar postingan tersimpan" },
+  save: { command: "save", description: "Simpan postingan" },
+  help: { command: "help", description: "Bantuan penggunaan bot" },
+  about: {
+    command: "about",
+    description: "Informasi mengenai Poston dan developer",
+  },
+} as const;
