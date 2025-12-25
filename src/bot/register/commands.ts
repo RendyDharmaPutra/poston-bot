@@ -21,7 +21,7 @@ export const registerCommands = (bot: Bot) => {
     const [domain, value] = data?.split(":") ?? [];
 
     if (domain === "page") {
-      listPostsHandler(ctx, Number(value), true);
+      await listPostsHandler(ctx, Number(value), true);
     }
   });
 };
