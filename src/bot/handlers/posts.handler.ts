@@ -5,7 +5,6 @@ import {
   savePostService,
 } from "../../services/posts.service";
 import { listPostsPresenter } from "../../presenters/posts/posts.presenter";
-import { Message } from "grammy/types";
 
 export const savePostHandler = async (ctx: Context) => {
   // Fetch the command argument if present, otherwise use the text directly.
