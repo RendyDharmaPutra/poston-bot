@@ -24,8 +24,8 @@ export type RetrieveApiResponse<T> =
   | (SuccessApiResponseWithData<T> & { meta: MetaApiResponse })
   | FailedApiResponse;
 
-export type MutationApiResponse =
-  | SuccessApiResponse
+export type MutationApiResponse<T> =
+  | SuccessApiResponseWithData<T>
   | FailedApiResponse
   | ValidationFailedApiResponse;
 

@@ -30,9 +30,9 @@ export const listPostsRepo = async (
 export const savePostRepo = async (
   url: string,
   telegramId: number
-): Promise<AxiosResponse<MutationApiResponse>> => {
+): Promise<AxiosResponse<MutationApiResponse<PostType>>> => {
   try {
-    return await apiClient.post<MutationApiResponse>(
+    return await apiClient.post<MutationApiResponse<PostType>>(
       endpoints.posts.root,
       { url },
       { headers: authHeaders(telegramId) }

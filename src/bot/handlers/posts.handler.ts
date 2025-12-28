@@ -4,7 +4,10 @@ import {
   listPostsService,
   savePostService,
 } from "../../services/posts.service";
-import { listPostsPresenter } from "../../presenters/posts/posts.presenter";
+import {
+  listPostsPresenter,
+  savePostPresenter,
+} from "../../presenters/posts/posts.presenter";
 
 export const savePostHandler = async (ctx: Context) => {
   // Fetch the command argument if present, otherwise use the text directly.
@@ -17,8 +20,11 @@ export const savePostHandler = async (ctx: Context) => {
   const msg = await ctx.reply("Sedang menyimpan postingan...");
 
   const result = await savePostService(ctx.from?.id, text.toString());
+  const message = savePostPresenter(result.message, result.data);
 
-  await ctx.api.editMessageText(msg.chat.id, msg.message_id, result.message);
+  await ctx.api.editMessageText(msg.chat.id, msg.message_id, message, {
+    parse_mode: "HTML",
+  });
 };
 
 export const listPostsHandler = async (
