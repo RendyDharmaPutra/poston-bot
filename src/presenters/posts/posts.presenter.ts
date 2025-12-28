@@ -37,7 +37,7 @@ export function listPostsPresenter(
 
 export function savePostPresenter(message: string, post: PostType) {
   return (
-    `✅ <b>Postingan berhasil disimpan!</b>\n\n` +
+    `✅ <b>${message}</b>\n\n` +
     `<b>${truncate(post.caption)}</b>\n` +
     `🔗 <a href="${post.url}">${post.url}</a>\n` +
     `🏷 ${post.platform} • ⏱ ${formatRelativeTime(post.createdAt)}\n\n` +
